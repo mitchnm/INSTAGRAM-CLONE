@@ -3,6 +3,13 @@
 {% block content %}
 {{block.super}}
 
-<h1>MALAYA WEWE!!</h1>
+{% for img in image %}
+<p>{{img.image_name}}</p>
+<img src="{{img.image.url}}" alt="image">
+<p>{{img.profile}}</p>
+<p>{{img.caption}}</p>
 
+{% empty %}
+<h4>NO IMAGE</h4>
+{% endfor %}
 {% endblock %}
