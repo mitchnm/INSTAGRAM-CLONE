@@ -9,6 +9,11 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+    @classmethod
+    def search_by_title(cls,search_term):
+        prof_name = cls.objects.filter(name__icontains=search_term)
+        return prof_name
+
 class Image(models.Model):
     image = models.ImageField(upload_to = 'instagram/')
     image_name = models.CharField(max_length =60)
