@@ -17,3 +17,13 @@ def search_results(request):
     else:
         message = "You haven't searched for any term."
         return render(request, 'search.html', {"message":message})
+
+def profile(request,id):
+    image = Image.objects.filter(owner_id=id)
+    current_user = request.current_user
+    user = User.objects.get(id=id)
+    try:
+      profile = Profile.objects.get(user_id=id)
+    except ObjectsDoesntExist:
+      return redirect() 
+    return render(request, 'profile.html', {"image":image, "user":user, "profile":profile})
