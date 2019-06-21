@@ -22,7 +22,7 @@
       <p style="text-align: center; font-family: 'Iceland', cursive;font-size: 30px">{{pro.bio| safe}}</p>
       {% endautoescape %}
     </div>
-    <button class="btn btn-default" href="{% url 'profile' %}">Visit profile</button>
+    <a class="btn btn-default" href="{% url 'profile' user.id %}">Visit profile</a>
     <div class="col-md-2"></div>
     <hr>
     {% endfor %}
