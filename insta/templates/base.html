@@ -1,3 +1,4 @@
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,12 @@
   <title>Instagram - {{title}}</title>
   {% else %}
   <title> Instagram </title>
-  {% endif %}</head>
+  {% endif %}
+  {% block styles %}
+  {% bootstrap_css %}
+  {% endblock %}
+</head>
+{% include "navbar.html" %}
 
 <body>
   {% block content %}
