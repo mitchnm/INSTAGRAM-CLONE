@@ -14,12 +14,14 @@
   {% endif %}
   {% block styles %}
   {% bootstrap_css %}
+  <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
   {% endblock %}
 </head>
 {% include "navbar.html" %}
 
 <body>
   {% block content %}
+  <div class="container"></div>
   {%endblock%}
 </body>
 

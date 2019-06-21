@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Image
+from .models import Image, Profile
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -11,7 +11,7 @@ def welcome(request):
 def search_results(request):
     if 'profile' in request.GET and request.GET["profile"]:
         search_term = request.GET.get("profile")
-        searched_profiles = Profile.search_by_title(search_term)
+        searched_profiles = Profile.search_by_name(search_term)
         message = f"{search_term}"
         return render(request, 'search.html',{"message":message, "profile":searched_profiles})
     else:
