@@ -4,6 +4,16 @@
 {{block.super}}
 
 {% for img in image %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{user.username}}</h3>
+  </div>
+  <div class="panel-body">
+    <img src="{{img.image.url}}" alt="image"> </div>
+  <div class="panel-footer">{{img.caption}}</div>
+</div>
+
 <p>{{img.image_name}}</p>
 <img src="{{img.image.url}}" alt="image">
 <p>{{img.profile}}</p>
