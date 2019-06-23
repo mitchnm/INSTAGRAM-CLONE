@@ -5,20 +5,28 @@
 
 {% for img in image %}
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{user.username}}</h3>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div style="display: block; margin-right: auto; margin-left: auto;">
+      {% for img in profile %}
+      <a href="{% url 'profile' user.id %}" style="color: black">
+        <h4 style="display: inline-block;"><img src="{{img.profile_pic.url}}" class="img-circle" alt="Image"
+            style="height: 25px; width: 25px;">
+          {{user.username}}</h4>
+      </a>
+      {% empty %}
+      {% endfor %}
+      <div>
+        <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 350px; width:450px;">
+      </div>
+      <h4>{{user.username}} <p>{{img.caption}}</p>
+      </h4>
+    </div>
   </div>
-  <div class="panel-body">
-    <img src="{{img.image.url}}" alt="image"> </div>
-  <div class="panel-footer">{{img.caption}}</div>
+  <hr>
+  <div class="col-md-4"></div>
 </div>
-
-<p>{{img.image_name}}</p>
-<img src="{{img.image.url}}" alt="image">
-<p>{{img.profile}}</p>
-<p>{{img.caption}}</p>
-
 {% empty %}
 <h4>NO IMAGE</h4>
 {% endfor %}

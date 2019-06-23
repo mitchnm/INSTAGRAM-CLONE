@@ -8,7 +8,8 @@ from django.core.exceptions import ObjectDoesNotExist
 @login_required(login_url='/accounts/login/')
 def welcome(request):
   image = Image.objects.all()
-  return render(request, 'index.html', {"image":image})
+  profile = Profile.objects.all()
+  return render(request, 'index.html', {"image":image, "profile":profile})
 
 def search_results(request):
     if 'profile' in request.GET and request.GET["profile"]:
