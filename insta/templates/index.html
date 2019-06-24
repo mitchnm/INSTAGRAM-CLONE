@@ -17,14 +17,14 @@
         {% empty %}
         {% endfor %}
         <a href="{% url 'profile' user.id %}" style="color: black; ">
-          {{img.name_of_image}}
+          {{img.user}}
         </a>
 
         <div>
           <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 450px; width:450px;">
         </div>
         <a href="{% url 'profile' user.id %}" style="color: black; ">
-          <strong>{{img.name_of_image}}</strong>
+          <strong>{{img.user}}</strong>
         </a>
         <p style="display: inline-block;">{{img.caption}}</p>
       </div>

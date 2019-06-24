@@ -48,43 +48,28 @@ def new_post(request):
       image.user = current_user
       image.save()
       return redirect('welcome')
-
   else:
     form = NewPostForm()
     print('invalid')
   return render(request, 'post.html', {"form": form})
 
-# @login_required(login_url='/accounts/login/')
-# def new_post(request):
-#   current_user = request.user
-#   if request.method == 'POST':
-#     form = NewPostForm(request.POST, request.FILES)
-#     if form.is_valid():
-#       post = form.save(commit=False)
-#       post.user = current_user
-#       post.save()
-#       print('image')
-#     return redirect(home)
-
-#   else:
-#       form = NewPostForm()
-#       print('invalid')
-#   return render(request,'post.html',{'user':current_user,'form':form,})
-
 @login_required(login_url='/accounts/login/')
 def update_profile(request,id):
-   current_user = request.user
-   if request.method == 'POST':
-       form = NewProfileForm(request.POST, request.FILES)
-       if form.is_valid():
-           profile = form.save(commit=False)
-           profile.username = current_user
-           profile.name_id=current_user.id
-           profile.save()
-       return redirect('profile')
-   else:
-       form = NewProfileForm()
-   return render(request, 'update_profile.html', {"form":form, "user":current_user})
+  current_user = request.user
+  user = User.objects.get(id=id)
+  if request.method == 'POST':
+    print('nooooooooooooooooooo')
+    form = NewProfileForm(request.POST, request.FILES)
+    if form.is_valid():
+      profile = form.save(commit=False)
+      profile.username = current_user
+      profile.name_id=current_user.id
+      profile.save()
+      return redirect('profile')
+  else:
+      form = NewProfileForm()
+      print('invalid')
+  return render(request, 'update_profile.html', {"form":form, "user":current_user})
 
 @login_required(login_url='/accounts/login/')
 def comment(request,id):

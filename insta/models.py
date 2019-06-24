@@ -30,9 +30,9 @@ class Image(models.Model):
     image_name = models.CharField(max_length =60)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     caption = models.CharField(max_length =200, blank=True)
-    profile = models.ForeignKey(Profile)
+    profile = models.ForeignKey(Profile, null=True)
     likes = models.IntegerField(default=0)
-    comments = models.ForeignKey(Comment)
+    comments = models.ForeignKey(Comment, null=True)
 
     def __str__(self):
         return self.image_name
