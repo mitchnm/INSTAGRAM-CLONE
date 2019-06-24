@@ -16,25 +16,25 @@
   <body>
     <div style="margin-top:30px;" class="container">
       <div clas="row">
-        <div class="col-md-3 col-sm-2 col-lg-2"></div>
-        <div class="col-md-3 col-xs-6 col-sm-4 col-lg-3">
+        <div class="col-md-3 "></div>
+        <div class="col-md-3 ">
           {% for img in profile %}
-          <img src="{{img.profile_pic.url}}" class="img-circle" alt="Image" style="height: 250px; width:250px;">
+          <img src="{{img.profile_pic.url}}" class="img-circle" alt="Image" style="height: 250px; width:250px;margin-right: 50px">
           {% empty %}
           {% endfor %}
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-6 col-lg-5">
+        <div class="col-md-3 ">
           {% for img in image %}
-          <h3>{{img.name_of_image}}</h3>
+          <h3>{{img.user}}</h3>
           {% empty %}
           {% endfor %}
           <hr>
-          <p>followers <strong>{{profile.followers}}</strong> following <strong>{{profile.following}}</strong></p>
+          <p>followers <strong>32</strong> following <strong>42</strong></p>
           <p>{{profile.bio }}</p>
           <p class="btn btn-default"> <a style="text-decoration:none" href="{% url 'update_profile' user.id  %}">Edit
               profile</a></p>
         </div>
-        <div class="col-md-3 col-sm-3 col-lg-2"></div>
+        <div class="col-md-3"></div>
       </div>
       <hr>
     </div>
@@ -51,7 +51,7 @@
         </div>
         {% endfor %}
         <a href="{% url 'post' %}">
-          <span >ADD IMAGE</span>
+          <span style="border: 2px solid black;margin:13px;height:200px;width:200px; "></span>
         </a>
       </div>
       <div class="col-md-2"></div>

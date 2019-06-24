@@ -67,7 +67,7 @@ def update_profile(request, id):
             profile.username = current_user
             profile.name_id = current_user.id
             profile.save()
-        return redirect('profile')
+        return redirect('welcome')
 
     else:
         form = NewProfileForm()
