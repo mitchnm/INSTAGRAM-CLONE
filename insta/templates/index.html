@@ -2,32 +2,33 @@
 {% load bootstrap3 %}
 {% block content %}
 {{block.super}}
+<div class="container">
+  {% for img in image %}
+  <div class="row">
 
-{% for img in image %}
-
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-    <div style="display: block; margin-right: auto; margin-left: auto;">
-      {% for img in profile %}
-      <a href="{% url 'profile' user.id %}" style="color: black">
-        <h4 style="display: inline-block;"><img src="{{img.profile_pic.url}}" class="img-circle" alt="Image"
-            style="height: 25px; width: 25px;">
-          {{user.username}}</h4>
-      </a>
-      {% empty %}
-      {% endfor %}
-      <div>
-        <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 350px; width:450px;">
+    <div style="display: block; margin-right: auto; margin-left: auto; text-align: center;">
+      <div style="display: block; margin-right: auto; margin-left: auto;">
+        {% for img in profile %}
+        <a href="{% url 'profile' user.id %}" style="color: black; ">
+          <h4 style="display: inline-block; "><img src="{{img.profile_pic.url}}" class="img-circle" alt="Image"
+              style="height: 25px; width: 25px;">
+            {{user.profile}}</h4>
+        </a>
+        {% empty %}
+        {% endfor %}
+        <div>
+          <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 450px; width:450px;">
+        </div>
+        <a href="{% url 'profile' user.id %}" style="color: black; ">
+          <strong>{{user.username}}</strong>
+        </a>
+        <p style="display: inline-block;">{{img.caption}}</p>
       </div>
-      <h4>{{user.username}} <p>{{img.caption}}</p>
-      </h4>
     </div>
+    <hr>
   </div>
-  <hr>
-  <div class="col-md-4"></div>
+  {% empty %}
+  <h4>NO IMAGE</h4>
+  {% endfor %}
 </div>
-{% empty %}
-<h4>NO IMAGE</h4>
-{% endfor %}
 {% endblock %}

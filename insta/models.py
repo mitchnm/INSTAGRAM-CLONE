@@ -7,7 +7,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=250)
     
     def __str__(self):
-        return self.bio
+        return self.name
 
     # @classmethod
     # def search_by_name(cls,search_term):

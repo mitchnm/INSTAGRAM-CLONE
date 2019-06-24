@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Image, Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -11,6 +11,7 @@ def welcome(request):
   profile = Profile.objects.all()
   return render(request, 'index.html', {"image":image, "profile":profile})
 
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'profile' in request.GET and request.GET["profile"]:
         search_term = request.GET.get("profile")
@@ -21,6 +22,7 @@ def search_results(request):
         message = "You haven't searched for any term."
         return render(request, 'search.html', {"message":message})
 
+@login_required(login_url='/accounts/login/')
 def profile(request,id):
     image = Image.objects.filter(id=id)
     current_user = request.user
@@ -28,5 +30,5 @@ def profile(request,id):
     try:
       profile = Profile.objects.get(name_id=id)
     except ObjectDoesNotExist:
-      return redirect() 
+      return redirect(current_user.id) 
     return render(request, 'profile.html', {"image":image, "user":user, "profile":profile})
