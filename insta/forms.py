@@ -1,5 +1,6 @@
 from .models import Image, Profile, Comment
 from django import forms
+from django.forms import M
 
 class NewPostForm(forms.ModelForm):
    class Meta:

@@ -84,10 +84,10 @@ def update_profile(request,id):
 
 @login_required(login_url='/accounts/login/')
 def comment(request,id):
-   image =Image.objects.get(id=id)
+   image =Image.objects.get(profile_id=id)
    form = CommentForm()
    try:
-       comments = Comment.objects.filter(id=id)
+       comments = Comment.objects.filter(comments_id=id)
    except:
        form = CommentForm()
    return render(request,'comment.html',{'image':image,'comments':comments,'form':form})
@@ -95,4 +95,3 @@ def comment(request,id):
 def form(request):
     form = NewPostForm()
     return render(request, 'post.html', {"form":form})
-

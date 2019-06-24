@@ -19,7 +19,6 @@ class Profile(models.Model):
     #     return prof_name
     
 class Comment(models.Model):
-    image_comment = models.ForeignKey('Image')
     user = models.ForeignKey(User)
     comment = models.CharField(max_length=100)
 
@@ -38,8 +37,6 @@ class Image(models.Model):
     def __str__(self):
         return self.image_name
 
-    def __str__(self):
-        return self.name_of_image    
     
     def save_image(self):
         self.save()
