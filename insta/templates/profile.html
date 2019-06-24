@@ -18,11 +18,20 @@
       <div clas="row">
         <div class="col-md-3 col-sm-2 col-lg-2"></div>
         <div class="col-md-3 col-xs-6 col-sm-4 col-lg-3">
-          <img style="border-radius:100px;height:200px;width:200px;" src="{{profile.profile_pic.url}}"
-            class="img-responsive" alt="Image">
+          {% for img in profile %}
+          <a href="{% url 'profile' user.id %}" style="color: black; ">
+            <h4 style="display: inline-block; "><img src="{{img.profile_pic.url}}" class="img-circle" alt="Image"
+                style="height: 25px; width: 25px;">
+            </h4>
+          </a>
+          {% empty %}
+          {% endfor %}
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6 col-lg-5">
-          <h3>{{user.usernmae}}</h3>
+          {% for img in image %}
+          <h3>{{img.name_of_image}}</h3>
+          {% empty %}
+          {% endfor %}
           <hr>
           <p>followers <strong>{{profile.followers}}</strong> following <strong>{{profile.following}}</strong></p>
           <p>{{profile.bio }}</p>

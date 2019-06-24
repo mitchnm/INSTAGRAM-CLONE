@@ -16,7 +16,9 @@
         </a>
         {% empty %}
         {% endfor %}
-        {{img.name_of_image}}
+        <a href="{% url 'profile' user.id %}" style="color: black; ">
+          {{img.name_of_image}}
+        </a>
 
         <div>
           <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 450px; width:450px;">
