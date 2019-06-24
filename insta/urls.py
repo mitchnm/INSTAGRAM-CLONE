@@ -9,6 +9,7 @@ urlpatterns = [
   url(r'^profile/(\d+)',views.profile,name='profile'),
   url(r'^update_profile/(\d+)', views.update_profile,name='update_profile'),
   url(r'^new_post/', views.new_post,name='update'),
+  url(r'^comment/(\d+)$',views.comment,name='comment'),
 ]
 
 if settings.DEBUG:
