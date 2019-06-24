@@ -23,12 +23,13 @@
         <div>
           <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 450px; width:450px;">
         </div>
+        <br>
         <a href="{% url 'profile' user.id %}" style="color: black; ">
           <strong>{{img.user}}</strong>
         </a>
         <p style="display: inline-block;">{{img.caption}}</p>
       </div>
-      <a href="{% url 'comment'  %}">...</a>
+      <a href="{% url 'comment' %}" style="color: black;" >comments</a>
     </div>
     <hr>
   </div>
