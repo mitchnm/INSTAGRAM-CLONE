@@ -14,7 +14,13 @@ class Profile(models.Model):
     #     prof_name = cls.objects.filter(username__icontains=search_term)
     #     return prof_name
     
+class Comment(models.Model):
+    image = models.ForeignKey(Image)
+    user = models.ForeignKey(User)
+    comment = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.comment
 
 class Image(models.Model):
     image = models.ImageField(upload_to = 'instagram/')
@@ -23,7 +29,7 @@ class Image(models.Model):
     caption = models.CharField(max_length =200)
     profile = models.ForeignKey(Profile)
     likes = models.IntegerField(default=0)
-    comments = models.CharField(max_length=500)
+    comments = models.ForeignKey(Comment)
 
     def __str__(self):
         return self.image_name
@@ -37,10 +43,3 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
-class Comment(models.Model):
-  image = models.ForeignKey(Image)
-  user = models.ForeignKey(User)
-  comment = models.CharField(max_length=100)
-
-  def __str__(self):
-      return self.comment

@@ -1,5 +1,5 @@
 {%extends 'base.html'%}
-{% load bootstrap3 %}                  
+{% load bootstrap3 %}
 {% block content %}
 {{block.super}}
 <div class="container">
@@ -28,6 +28,7 @@
         </a>
         <p style="display: inline-block;">{{img.caption}}</p>
       </div>
+      <a href="{% url 'comment' image.id %}">...</a>
     </div>
     <hr>
   </div>

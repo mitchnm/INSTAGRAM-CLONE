@@ -31,7 +31,7 @@
         {% if user.is_authenticated %}
         
               <li>
-                <a href="">Create Article</a>
+                <a href="{% url 'post' %}">New Post</a>
               </li>
               <li>
                 <a href="/accounts/password/change">Change Password</a>
