@@ -8,7 +8,7 @@ class NewPostForm(forms.ModelForm):
 class NewProfileForm(forms.ModelForm):
    class Meta:
        model = Profile
-       exclude = ['']
+       exclude = ['name']
 class CommentForm(forms.ModelForm):
    class Meta:
        model = Comment

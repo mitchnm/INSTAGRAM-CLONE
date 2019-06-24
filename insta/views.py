@@ -53,35 +53,34 @@ def profile(request,id):
 #    return render(request, 'post.html', {"form": form, "profile12":profile})
 
 @login_required(login_url='/accounts/login/')
-def update_image(request,id):
-   current_user = request.user
-   image = Image.objects.get(id=id)
-   if request.method == 'POST':
-       form = UpdateImage(request.POST)
-       if form.is_valid():
-           image = form.save(commit=False)
-           image.owner = current_user
-           image.update_image(current,new)
-           return redirect(home)
-   else:
-       form = NewPostForm()
+def new_post(request):
+  current_user = request.user
+  if request.method == 'POST':
+      form = NewPostForm(request.POST, request.FILES)
+      if form.is_valid():
+          image = form.save(commit=False)
+          image.user = current_user
+          image.save()
+      return redirect(home)
 
-   return render(request,'update_image.html',{'user':current_user,'form':form,"image":image})
+  else:
+      form = NewPostForm()
+  return render(request,'post.html',{'user':current_user,'form':form,})
 
 @login_required(login_url='/accounts/login/')
-def update_profile(request):
+def update_profile(request,id):
    current_user = request.user
    if request.method == 'POST':
        form = NewProfileForm(request.POST, request.FILES)
        if form.is_valid():
            profile = form.save(commit=False)
            profile.username = current_user
-           profile.user_id=current_user.id
+           profile.name_id=current_user.id
            profile.save()
        return redirect('profile')
    else:
        form = NewProfileForm()
-   return render(request, 'update_profile.html', {"form":form})
+   return render(request, 'update_profile.html', {"form":form, "user":current_user})
 
 @login_required(login_url='/accounts/login/')
 def comment(request,id):
@@ -92,3 +91,8 @@ def comment(request,id):
    except:
        form = CommentForm()
    return render(request,'comment.html',{'image':image,'comments':comments,'form':form})
+
+def form(request):
+    form = NewPostForm()
+    return render(request, 'post.html', {"form":form})
+

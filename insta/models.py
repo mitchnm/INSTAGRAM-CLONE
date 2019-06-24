@@ -8,6 +8,10 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.bio
+    
+    def save_profile(self):
+        self.save()
+
 
     # @classmethod
     # def search_by_name(cls,search_term):

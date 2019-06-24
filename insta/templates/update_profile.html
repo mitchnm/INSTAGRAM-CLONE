@@ -10,20 +10,19 @@
   <title>New Profile</title>
   {{form.media}}
 
-  {% block styles %} 
+  {% block styles %}
   {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
   {% endblock %}
 
 </head>
 
 <body>
-
+  {% block content %}
   <div class="container">
     <div class="card mt-5">
       <div class="card-body">
         <h5 class="yu text-center">Create a profile to begin</h5>
-        <form action="{%url 'new-profile'%}" method="post" enctype="multipart/form-data">
+        <form action="{%url 'update_profile' user.id %}" method="post" enctype="multipart/form-data">
           {%csrf_token%}
 
           {% bootstrap_form form%}
@@ -36,7 +35,9 @@
 
   {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% bootstrap_javascript %} {% endblock %}
+  {% bootstrap_javascript %}
+  {% endblock %}
+  {% endblock %}
 
 </body>
 
