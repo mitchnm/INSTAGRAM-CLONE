@@ -3,6 +3,7 @@ from .models import Image, Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import NewPostForm, NewProfileForm, CommentForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -35,20 +36,37 @@ def profile(request,id):
       return redirect(user.id)
     return render(request, 'profile.html', {"image":image, "user":user, "profile":profile1, "profile":profile})
 
-@login_required(login_url='/accounts/login/')
-def new_post(request):
-   current_user = request.user
-   if request.method == 'POST':
-       form = NewPostForm(request.POST, request.FILES)
-       if form.is_valid():
-           post = form.save(commit=False)
-           post.profile=current_user
-           post.save()
-       return redirect('welcome')
+# @login_required(login_url='/accounts/login/')
+# def new_post(request, id):
+#    current_user = request.user
+#    profile = Profile.objects.get(name_id=id)
+#    if request.method == 'POST':
+#        form = NewPostForm(request.POST, request.FILES)
+#        if form.is_valid():
+#            image = form.save(commit=False)
+#            image.name_of_image=current_user
+#            image.save_image()
+#        return redirect('welcome')
 
+#    else:
+#        form = NewPostForm()
+#    return render(request, 'post.html', {"form": form, "profile12":profile})
+
+@login_required(login_url='/accounts/login/')
+def update_image(request,id):
+   current_user = request.user
+   image = Image.objects.get(id=id)
+   if request.method == 'POST':
+       form = UpdateImage(request.POST)
+       if form.is_valid():
+           image = form.save(commit=False)
+           image.owner = current_user
+           image.update_image(current,new)
+           return redirect(home)
    else:
        form = NewPostForm()
-   return render(request, 'post.html', {"form": form})
+
+   return render(request,'update_image.html',{'user':current_user,'form':form,"image":image})
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):

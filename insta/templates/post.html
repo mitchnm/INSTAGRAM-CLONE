@@ -1,3 +1,5 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
 
@@ -8,16 +10,15 @@
   <title>New Post</title>
   {{form.media}}
 
-  {% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+  
 
 </head>
 
 
 <body>
+  {% block content %}
   <div class="container">
-    <h1 class="text-center" style="font-family:'Lobster Two',sans-serif">Instaclone</h1>
-    <form action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
+    <form action="{%url 'post' profile.id %}" method="post" enctype="multipart/form-data">
       {%csrf_token%}
 
       {% bootstrap_form form %}
@@ -29,7 +30,7 @@
   {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   {% bootstrap_javascript %} {% endblock %}
-
+{% endblock %}
 </body>
 
 </html>
