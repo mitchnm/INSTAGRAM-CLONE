@@ -34,3 +34,43 @@ def profile(request,id):
     except ObjectDoesNotExist:
       return redirect(user.id)
     return render(request, 'profile.html', {"image":image, "user":user, "profile":profile1, "profile":profile})
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+   current_user = request.user
+   if request.method == 'POST':
+       form = NewPostForm(request.POST, request.FILES)
+       if form.is_valid():
+           post = form.save(commit=False)
+           post.profile=current_user
+           post.save()
+       return redirect('welcome')
+
+   else:
+       form = NewPostForm()
+   return render(request, 'post.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def update_profile(request):
+   current_user = request.user
+   if request.method == 'POST':
+       form = NewProfileForm(request.POST, request.FILES)
+       if form.is_valid():
+           profile = form.save(commit=False)
+           profile.username = current_user
+           profile.user_id=current_user.id
+           profile.save()
+       return redirect('profile')
+   else:
+       form = NewProfileForm()
+   return render(request, 'update_profile.html', {"form":form})
+
+@login_required(login_url='/accounts/login/')
+def comment(request,id):
+   image =Image.objects.get(id=id)
+   form = CommentForm()
+   try:
+       comments = Comment.objects.filter(id=id)
+   except:
+       form = CommentForm()
+   return render(request,'comment.html',{'image':image,'comments':comments,'form':form})
