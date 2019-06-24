@@ -1,11 +1,12 @@
 from .models import Image, Profile, Comment
 from django import forms
-from django.forms import M
+from django.forms import ModelForm,Textarea,IntegerField
 
 class NewPostForm(forms.ModelForm):
-   class Meta:
-       model = Image
-       exclude = ['likes','comments', 'name_of_image', 'profile']
+  class Meta:
+    model = Image
+    exclude = ['likes','comments', 'user', 'profile']
+
 class NewProfileForm(forms.ModelForm):
    class Meta:
        model = Profile

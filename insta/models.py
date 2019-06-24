@@ -28,8 +28,8 @@ class Comment(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to = 'instagram/')
     image_name = models.CharField(max_length =60)
-    name_of_image = models.ForeignKey(User, on_delete=models.CASCADE,primary_key=True)
-    caption = models.CharField(max_length =200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    caption = models.CharField(max_length =200, blank=True)
     profile = models.ForeignKey(Profile)
     likes = models.IntegerField(default=0)
     comments = models.ForeignKey(Comment)

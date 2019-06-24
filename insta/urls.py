@@ -9,7 +9,6 @@ urlpatterns = [
   url(r'^profile/(\d+)',views.profile,name='profile'),
   url(r'^update_profile/(\d+)', views.update_profile,name='update_profile'),
   url(r'^new_post/', views.new_post,name='post'),
-  url(r'^new_post/', views.form,name='post1'),
   url(r'^comment/',views.comment,name='comment'),
 ]
 
