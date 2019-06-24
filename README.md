@@ -7,9 +7,9 @@
 This is an instagram clone.
 
 ## Features
-* View different photos that interest you.
-* Click on a button to expand to view details of the image.
-* Search for different categories or location of photos and view them.
+* View photos posted by different users.
+* Like and comment on the different photos.
+* Search for different users and view their profiles.
 
 ## Getting Started
 
@@ -24,10 +24,10 @@ This is an instagram clone.
 
 | Behavior                    | Input                         | Output                       |
 |----------------------------:|:-----------------------------:|-----------------------------:|
-| Homepage loads              |  Click on log in              |  Displays log in page        |
-| New page loads              |  Click on subscribe           |  Displays sign up page       |
-| Profile page loads          |  Click add post               |  Add post                    |
-| Comment page loads          |  Click comments               |  Add comment                 |
+|               |                |          |
+|               |  Click on subscribe           |  Displays sign up page       |
+|           |                 |  Add post                    |
+|           |                 |  Add comment                 |
 
 ## Technologies used
 
