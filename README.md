@@ -9,6 +9,7 @@ This is an instagram clone.
 ## Features
 * View photos posted by different users.
 * Like and comment on the different photos.
+* Upload your own photos as a user.
 * Search for different users and view their profiles.
 
 ## Getting Started
@@ -16,18 +17,16 @@ This is an instagram clone.
 * Clone or download the Repo
 * Create a virtual environment
 * Read the specs and requirements files and Install all the requirements.
-* Edit the start.sh file with your secret key
-* Run ./start.py
-* Access the application through `localhost:5000`
+  * Access the application through `localhost:5000`
 
 ## BDD
 
 | Behavior                    | Input                         | Output                       |
 |----------------------------:|:-----------------------------:|-----------------------------:|
 |               |                |          |
-|               |  Click on subscribe           |  Displays sign up page       |
-|           |                 |  Add post                    |
-|           |                 |  Add comment                 |
+|               |             |         |
+|           |                 |                      |
+|           |                 |                   |
 
 ## Technologies used
 
