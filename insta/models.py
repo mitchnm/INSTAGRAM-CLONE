@@ -7,7 +7,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=250)
     
     def __str__(self):
-        return self.name
+        return self.bio
 
     # @classmethod
     # def search_by_name(cls,search_term):
@@ -19,6 +19,7 @@ class Profile(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to = 'instagram/')
     image_name = models.CharField(max_length =60)
+    name_of_image = models.ForeignKey(User, on_delete=models.CASCADE,primary_key=True)
     caption = models.CharField(max_length =200)
     profile = models.ForeignKey(Profile)
     likes = models.IntegerField(default=0)
@@ -26,6 +27,9 @@ class Image(models.Model):
 
     def __str__(self):
         return self.image_name
+
+    def __str__(self):
+        return self.name_of_image    
     
     def save_image(self):
         self.save()

@@ -24,11 +24,11 @@ def search_results(request):
 
 @login_required(login_url='/accounts/login/')
 def profile(request,id):
-    image = Image.objects.filter(id=id)
+    image = Image.objects.filter(name_of_image_id=id)
     current_user = request.user
     user = User.objects.get(id=id)
     try:
-      profile = Profile.objects.get(name_id=id)
+      profile = Profile.objects.filter(name_id=id)
     except ObjectDoesNotExist:
-      return redirect(current_user.id) 
+      return redirect(user.id)
     return render(request, 'profile.html', {"image":image, "user":user, "profile":profile})
