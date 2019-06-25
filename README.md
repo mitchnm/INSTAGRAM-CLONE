@@ -17,7 +17,7 @@ This is an instagram clone.
 * Clone or download the Repo
 * Create a virtual environment
 * Read the specs and requirements files and Install all the requirements.
-  * Access the application through `localhost:5000`
+* Access the application through `localhost:5000`
 
 ## BDD
 

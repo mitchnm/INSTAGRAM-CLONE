@@ -76,10 +76,19 @@ def update_profile(request, id):
 
 @login_required(login_url='/accounts/login/')
 def comment(request, id):
-    image = Image.objects.get(profile_id=id)
-    form = CommentForm()
-    try:
-        comments = Comment.objects.filter(comments_id=id)
-    except:
+    current_user = request.user
+    comments = Comment.objects.filter(image_id=id)
+    image = Image.objects.get(id=id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.image = image
+            comment.username = current_user
+            comment.name_id = current_user.id
+            comment.save()
+        return redirect('welcome')
+
+    else:
         form = CommentForm()
     return render(request, 'comment.html', {'image': image, 'comments': comments, 'form': form})
