@@ -31,11 +31,10 @@ def profile(request, id):
     image = Image.objects.filter(user_id=id)
     current_user = request.user
     user = User.objects.get(id=id)
-    
     try:
         profile1 = Profile.objects.get(name=id)
     except ObjectDoesNotExist:
-        return redirect(profile,user.id)
+        return render(request,'profile.html')
     return render(request, 'profile.html', {"image": image, "user": user, "profile1": profile1})
 
 

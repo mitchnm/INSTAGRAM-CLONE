@@ -7,16 +7,16 @@
   <div class="row">
     <div style="display: block; margin-right: auto; margin-left: auto; text-align: center;">
       <div style="display: block; margin-right: auto; margin-left: auto;">
-        
+
         <!-- <a href="{% url 'profile' user.id %}" style="color: black; ">
           <h4 style="display: inline-block; "><img src="{{profile1.profile_pic.url}}" class="img-circle" alt="Image"
               style="height: 25px; width: 25px;">
           </h4>
         </a> -->
-        <a href="{% url 'profile' img.id %}" style="color: black; ">
+        <a href="{% url 'profile' img.id %}" style="color: black; font-size: 25px">
           {{img.user}}
         </a>
-
+        <br>
         <div>
           <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 450px; width:550px;">
         </div>

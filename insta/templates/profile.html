@@ -24,8 +24,8 @@
           
         </div>
         <div class="col-md-3 ">
-          <h3 style="font-family: 'Righteous', cursive;">{{image.user}}</h3>
-          <h2 style="font-family: 'Iceland', cursive;">{{profile1.bio }}</h2>
+          <h3 style="font-family: 'Righteous', cursive;">{{user.username}}</h3>
+          <h2 style="font-family: 'Iceland', cursive;">{{profile1.bio}}</h2>
           <br>
           <p>followers <strong>5</strong> following <strong>2</strong></p>
           <button class="btn btn-default" href="">Follow</button>
@@ -41,14 +41,15 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         {% for image in image %}
-        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 ">
+        
           <img style="margin:13px;height:200px;width:200px;" src="{{image.image.url}}" class="img-responsive"
             alt="Image">
         </div>
-        <a href="{% url 'post' image.id %}">
-          <button class="btn btn-default">ADD IMAGE</button>
-        </a>
+        
         {% endfor %}
+        <a href="{% url 'post' user.id %}">
+            <button class="btn btn-default">ADD IMAGE</button>
+          </a>
       </div>
       <div class="col-md-2"></div>
     </div>
