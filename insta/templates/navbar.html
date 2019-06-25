@@ -58,8 +58,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'welcome' %}"><i class="fab fa-instagram"  
-            style="width: 150px; height: 1500px; color: black;"> INSTAGRAM</i></a>
+        <a class="navbar-brand" href="{% url 'welcome' %}"> INSTAGRAM</a>
       </div>
       <div class="nav navbar-nav navbar-left">
         <form class="navbar-form" role="search" action="{% url 'search' %}">
@@ -74,7 +73,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
-          <li><a href="{% url 'profile' user.id %}">{{ user.username }}</a></li>
+          <li><a href="{% url 'profile' user.id %}">{{ user.username }}  (POST)</a></li>
           <li><a href="/accounts/password/change">Change Password</a></li>
           <li><a href="/logout">Logout</a></li>
           {% else %}

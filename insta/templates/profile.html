@@ -18,23 +18,17 @@
       <div clas="row">
         <div class="col-md-3 "></div>
         <div class="col-md-3 ">
-          {% for img in profile %}
-          <img src="{{img.profile_pic.url}}" class="img-circle" alt="Image"
+          
+          <img src="{{profile1.profile_pic.url}}" class="img-circle" alt="Image"
             style="height: 250px; width:250px;margin-right: 50px">
-          {% empty %}
-          {% endfor %}
+          
         </div>
         <div class="col-md-3 ">
-          {% for img in image %}
-          <h3 style="font-family: 'Righteous', cursive;">{{img.user}}</h3>
-          {% empty %}
-          {% endfor %}
-          {% for profile in profile %}
-          <h2 style="font-family: 'Iceland', cursive;">{{profile.bio }}</h2>
-          {% empty %}
-          {% endfor %}
+          <h3 style="font-family: 'Righteous', cursive;">{{image.user}}</h3>
+          <h2 style="font-family: 'Iceland', cursive;">{{profile1.bio }}</h2>
           <br>
-          <p>followers <strong>37</strong> following <strong>42</strong></p>
+          <p>followers <strong>5</strong> following <strong>2</strong></p>
+          <button class="btn btn-default" href="">Follow</button>
           <p class="btn btn-default"> <a style="color: black;" href="{% url 'update_profile' user.id  %}">Edit
               profile</a></p>
         </div>
@@ -51,10 +45,10 @@
           <img style="margin:13px;height:200px;width:200px;" src="{{image.image.url}}" class="img-responsive"
             alt="Image">
         </div>
-        {% endfor %}
-        <a href="{% url 'post' %}">
+        <a href="{% url 'post' image.id %}">
           <button class="btn btn-default">ADD IMAGE</button>
         </a>
+        {% endfor %}
       </div>
       <div class="col-md-2"></div>
     </div>

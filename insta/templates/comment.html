@@ -26,35 +26,47 @@
       <div class="col-md-2 col-sm-2 col-xs-1"></div>
       <div class="col-md-8 col-sm-8 col-xs-10">
         <div class="card">
-          <img class="img-responsive" src="{{image.image.url}}"><br>
-
+          <img class="img-responsive" src="{{image.image.url}}">
+          <br>
         </div>
-
-        {% for comment in comment %}
-        <p class="ment">{{comment.comment}}</p>
-        <hr>
-        {% endfor %}
-
-        <div class="navbar-fixed-bottom">
-          <div class="col-md-3 col-sm-2"></div>
-          <div class="col-md-6 col-sm-8">
-            <form action="/comment/{{user.id}}" method="post" enctype="multipart/form-data">
-              {%csrf_token%}
-
-              {% bootstrap_form form%}
-              <input type="submit" class="btn btn-primary btn-sm" value="Post">
-            </form>
-          </div>
-          <div class="col-md-3 col-sm-2"></div>
+        <h3 style="text-align: center;"><u>COMMENTS</u></h3>
+        <div style="text-align: center;">
+          {% if profile %}
+          {% for img in profile %}
+          <a href="{% url 'profile' user.id %}" style="color: black; ">
+            <h4 style="display: inline-block; "><img src="{{img.profile_pic.url}}" class="img-circle" alt="Image"
+                style="height: 25px; width: 25px;">
+            </h4>
+          </a>
+          {% empty %}
+          {% endfor %}
+          {% endif %}
+          <a href="{% url 'profile' user.id %}" style="color: black; ">
+            {{img.user}}
+          </a>
+          {% for comment in comments %}
+          <h3>{{comment.comment}}</h3>
+          {% endfor %}
+          <br><br>
         </div>
+        <div class="col-md-3 col-sm-2"></div>
+        <div class="col-md-6 col-sm-8">
+          <form action="/comment/{{user.id}}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-primary btn-sm" value="Post">
+          </form>
+        </div>
+        <div class="col-md-3 col-sm-2"></div>
       </div>
-
-      {% block scripts %}
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      {% bootstrap_javascript %} {% endblock %}
-
-      <div class="col-md-2 col-sm-2 col-xs-1"></div>
     </div>
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
+
+    <div class="col-md-2 col-sm-2 col-xs-1"></div>
+  </div>
 
   </div>
   <br><br><br>

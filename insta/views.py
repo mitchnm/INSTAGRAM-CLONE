@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
-from .models import Image, Profile,Comment
+from .models import Image, Profile, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import NewPostForm, NewProfileForm, CommentForm
+from .forms import ImageForm, ProfileForm, CommentForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def welcome(request):
     image = Image.objects.all()
-    profile = Profile.objects.all()
-    return render(request, 'index.html', {"image": image, "profile": profile})
+    profile1 = Profile.objects.all()
+    return render(request, 'index.html', {"image": image, "profile1": profile1})
 
 
 @login_required(login_url='/accounts/login/')
@@ -31,20 +31,21 @@ def profile(request, id):
     image = Image.objects.filter(user_id=id)
     current_user = request.user
     user = User.objects.get(id=id)
-    profile = Profile.objects.all()
+    
     try:
-        profile1 = Profile.objects.filter(name_id=id)
+        profile1 = Profile.objects.get(name=id)
     except ObjectDoesNotExist:
-        return redirect(user.id)
-    return render(request, 'profile.html', {"image": image, "user": user, "profile": profile1, "profile": profile})
+        return redirect(profile,user.id)
+    return render(request, 'profile.html', {"image": image, "user": user, "profile1": profile1})
 
 
 @login_required(login_url='/accounts/login/')
-def new_post(request):
+def new_post(request,id):
     current_user = request.user
+    image = Image.objects.get(user_id=id)
     if request.method == 'POST':
         print('noo')
-        form = NewPostForm(request.POST, request.FILES)
+        form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
             image.user = current_user
@@ -52,16 +53,16 @@ def new_post(request):
         return redirect('welcome')
 
     else:
-        form = NewPostForm()
+        form = ImageForm()
         print('xyz')
-    return render(request, 'post.html', {"form": form})
+    return render(request, 'post.html', {"form": form, "image":image})
 
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request, id):
     current_user = request.user
     if request.method == 'POST':
-        form = NewProfileForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.username = current_user
@@ -70,7 +71,7 @@ def update_profile(request, id):
         return redirect('welcome')
 
     else:
-        form = NewProfileForm()
+        form = ProfileForm()
     return render(request, 'update_profile.html', {"form": form, "user": current_user})
 
 
@@ -78,6 +79,7 @@ def update_profile(request, id):
 def comment(request, id):
     current_user = request.user
     comments = Comment.objects.filter(image_id=id)
+    profile = Profile.objects.all()
     image = Image.objects.get(id=id)
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
@@ -91,4 +93,4 @@ def comment(request, id):
 
     else:
         form = CommentForm()
-    return render(request, 'comment.html', {'image': image, 'comments': comments, 'form': form, "user":current_user})
+    return render(request, 'comment.html', {'image': image, 'comments': comments, 'form': form, "user":current_user, "profile":profile})

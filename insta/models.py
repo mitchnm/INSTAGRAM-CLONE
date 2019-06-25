@@ -19,7 +19,7 @@ class Profile(models.Model):
     #     return prof_name
     
 class Comment(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True)
     image = models.ForeignKey('Image')
     comment = models.CharField(max_length=100)
 

@@ -5,23 +5,20 @@
 <div class="container">
   {% for img in image %}
   <div class="row">
-
     <div style="display: block; margin-right: auto; margin-left: auto; text-align: center;">
       <div style="display: block; margin-right: auto; margin-left: auto;">
-        {% for img in profile %}
-        <a href="{% url 'profile' user.id %}" style="color: black; ">
-          <h4 style="display: inline-block; "><img src="{{img.profile_pic.url}}" class="img-circle" alt="Image"
+        
+        <!-- <a href="{% url 'profile' user.id %}" style="color: black; ">
+          <h4 style="display: inline-block; "><img src="{{profile1.profile_pic.url}}" class="img-circle" alt="Image"
               style="height: 25px; width: 25px;">
           </h4>
-        </a>
-        {% empty %}
-        {% endfor %}
-        <a href="{% url 'profile' user.id %}" style="color: black; ">
+        </a> -->
+        <a href="{% url 'profile' img.id %}" style="color: black; ">
           {{img.user}}
         </a>
 
         <div>
-          <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 450px; width:450px;">
+          <img class="img-repronsive" src="{{img.image.url}}" alt="image" style="height: 450px; width:550px;">
         </div>
         <br>
         <a href="{% url 'profile' user.id %}" style="color: black; ">
@@ -29,12 +26,13 @@
         </a>
         <p style="display: inline-block;">{{img.caption}}</p>
       </div>
-      <a href="{% url 'comment' img.id %}" style="color: black;" >comments</a>
+      <button class="btn btn-default">
+        <a href="{% url 'comment' img.id %}" style="color: black; text-align: right;  ">comments</a>
+      </button>
     </div>
     <hr>
   </div>
   {% empty %}
-  <h4>NO IMAGE</h4>
   {% endfor %}
 </div>
 {% endblock %}
