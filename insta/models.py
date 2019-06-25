@@ -20,6 +20,7 @@ class Profile(models.Model):
     
 class Comment(models.Model):
     user = models.ForeignKey(User)
+    image = models.ForeignKey('Image')
     comment = models.CharField(max_length=100)
 
     def __str__(self):
@@ -32,7 +33,6 @@ class Image(models.Model):
     caption = models.CharField(max_length =200, blank=True)
     profile = models.ForeignKey(Profile, null=True)
     likes = models.IntegerField(default=0)
-    comments = models.ForeignKey(Comment, null=True)
 
     def __str__(self):
         return self.image_name

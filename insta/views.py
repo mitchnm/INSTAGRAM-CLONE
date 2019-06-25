@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Image, Profile
+from .models import Image, Profile,Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
@@ -91,4 +91,4 @@ def comment(request, id):
 
     else:
         form = CommentForm()
-    return render(request, 'comment.html', {'image': image, 'comments': comments, 'form': form})
+    return render(request, 'comment.html', {'image': image, 'comments': comments, 'form': form, "user":current_user})

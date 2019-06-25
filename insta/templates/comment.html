@@ -1,6 +1,4 @@
 {%extends 'base.html'%}
-{% block content %}
-{{ block.super}}
 
 <!DOCTYPE html>
 <html>
@@ -11,29 +9,28 @@
 
   <title>New Comment</title>
   {{form.media}}
-  {% load bootstrap3 %} {% load staticfiles %}
-  {% block styles %} {% bootstrap_css %}
+  {% load bootstrap3 %}
+  {% load staticfiles %}
+  {% block styles %}
+  {% bootstrap_css %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
   {% endblock %}
 
 </head>
 
 <body>
-  <div class="container" style="margin-top:50px;margin-bottom:50px;">
+  {% block content %}
+  {{ block.super}}
+  <div class="container">
     <div class="row">
       <div class="col-md-2 col-sm-2 col-xs-1"></div>
       <div class="col-md-8 col-sm-8 col-xs-10">
         <div class="card">
-          <a style="text-decoration:none;color:black" href="profile/{{user.id}}">
-            <p><img class="post" src="{{image.profile.profile_photo.url}}"></p><br>
-          </a>
           <img class="img-responsive" src="{{image.image.url}}"><br>
 
         </div>
 
         {% for comment in comment %}
-
         <p class="ment">{{comment.comment}}</p>
         <hr>
         {% endfor %}
